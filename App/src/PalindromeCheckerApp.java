@@ -22,11 +22,28 @@
  *git add App/src/PalindromeCheckerApp.java
  **/
 
-import java.util.Scanner;
-
+/**
+ * MAIN CLASS - UseCase2PalindromeCheckerApp
+ * Use Case 2: Hardcoded Palindrome Validation
+ */
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
-        System.out.println("Welcome to Palindrome Checker App Management System");
-        System.out.println("Modify this logic to usecase 2");
+
+        String input = "madam";
+        String reversed = "";
+
+
+        for (int i = input.length() - 1; i >= 0; i--) {
+            reversed = reversed + input.charAt(i);
+        }
+
+        System.out.println("Word to check: " + input);
+        System.out.println("Reversed word: " + reversed);
+
+        if (input.equals(reversed)) {
+            System.out.println("Result: The string is a palindrome.");
+        } else {
+            System.out.println("Result: The string is NOT a palindrome.");
+        }
     }
 }
