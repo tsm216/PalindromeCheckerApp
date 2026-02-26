@@ -1,54 +1,53 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-//version 1.0
-//author tarun
-//usecase 1: welcome page
+import java.util.Stack;
 
 /**
- * MAIN CLASS - UseCase1PalindromeApp
- * Use Case 1 : Application entry and welcome page
+ * ==========================================================
+ * MAIN CLASS - UseCase5PalindromeCheckerApp
+ * ==========================================================
+ *
+ * Use Case 5: Stack Based Palindrome Checker
+ *
  * Description:
- * This class represents the entry point of the
- * Palindrome Checker Management System
+ * This class validates a palindrome using a Stack
+ * data structure which follows the LIFO principle.
  *
- * At this stage, the application:
- * -starts execution fromt he main() method
- * -dislays a welcome messages
- * -shows application version
- *
- * no palindrome logic is implemented uet
- *
- *the goal is to e
- *git add App/src/PalindromeCheckerApp.java
- **/
-
-/**
- * MAIN CLASS - UseCase2PalindromeCheckerApp
- * Use Case 2: Hardcoded Palindrome Validation
+ * @author Developer
+ * @version 5.0
  */
-public class PalindromeCheckerApp {
+
+public class PalindromeCheckerApp{
+
+    /**
+     * Application entry point for UC5.
+     *
+     * @param args Command-line arguments
+     */
     public static void main(String[] args) {
 
-        String input = "radar";
+        // Declare and initialize input string
+        String input = "noon";
 
-        char[] chars = input.toCharArray();
+        // Create stack
+        Stack<Character> stack = new Stack<>();
 
-        int start = 0;
-        int end = chars.length - 1;
+        // Push characters into stack
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
 
         boolean isPalindrome = true;
-        while (start < end) {
 
-            if (chars[start] != chars[end]) {
+        // Pop and compare
+        for (char c : input.toCharArray()) {
+
+            if (c != stack.pop()) {
                 isPalindrome = false;
                 break;
             }
-
-            start++;
-            end--;
         }
 
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + isPalindrome);
     }
 }
+
