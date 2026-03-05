@@ -1,30 +1,66 @@
-import java.util.Scanner;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Stack;
+
 public class PalindromeCheckerApp {
-        public static void main(String[] args) {
 
-            String input = "A man a plan a canal Panama";
+    public static void main(String[] args) {
 
-            // Step 1: Normalize string
-            String normalized = input
-                    .toLowerCase()                 // convert to lowercase
-                    .replaceAll("[^a-z0-9]", "");  // remove spaces & symbols
+        String input = "level";
+        PalindromeStrategy strategy;
+        strategy = new StackStrategy();
+        boolean result = strategy.check(input);
 
-            boolean isPalindrome = true;
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome? : " + result);
+    }
+}
 
-            // Step 2: Compare characters from both ends
-            for (int i = 0; i < normalized.length() / 2; i++) {
+interface PalindromeStrategy {
+    boolean check(String input);
+}
 
-                if (normalized.charAt(i) !=
-                        normalized.charAt(normalized.length() - 1 - i)) {
+class StackStrategy implements PalindromeStrategy {
 
-                    isPalindrome = false;
-                    break;
-                }
-            }
+    @Override
+    public boolean check(String input) {
 
-            // Print result
-            System.out.println("Input : " + input);
-            System.out.println("Is Palindrome? : " + isPalindrome);
+        Stack<Character> stack = new Stack<>();
+        for (char c : input.toCharArray()) {
+            stack.push(c);
         }
+
+        for (char c : input.toCharArray()) {
+            if (c != stack.pop()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
+
+class DequeStrategy implements PalindromeStrategy {
+
+    @Override
+    public boolean check(String input) {
+
+        Deque<Character> deque = new ArrayDeque<>();
+
+        for (char c : input.toCharArray()) {
+            deque.addLast(c);
+        }
+
+        while (deque.size() > 1) {
+
+            char front = deque.removeFirst();
+            char rear = deque.removeLast();
+
+            if (front != rear) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
